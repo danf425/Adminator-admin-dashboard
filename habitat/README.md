@@ -1,3 +1,11 @@
+Linux plan still in progress:
+
+Need to get it working on standard centos machine:
+Necessary:
+- zlib-devel
+- http://www.linuxfromscratch.org/blfs/view/svn/general/libpng.html
+- https://tecadmin.net/install-latest-nodejs-and-npm-on-centos/
+
 # adminator
 
 Brief description of adminator

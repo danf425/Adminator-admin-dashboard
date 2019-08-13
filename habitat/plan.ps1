@@ -14,7 +14,7 @@ $pkg_origin="danf"
 
 # Required.
 # Sets the version of the package
-$pkg_version="0.1.0"
+$pkg_version="1.0.0"
 
 # Optional.
 # The name and email address of the package maintainer.
@@ -29,48 +29,72 @@ $pkg_description="Adminator NodeJS Dashboard Application"
 
 $pkg_deps=@(
     "core/node"
+    "core/python"
 )  
 $pkg_build_deps=@(
-    "core/node"
+    "core/git"
+    "core/python"
 )
 
+# function Invoke-Begin {
+#  Invoke-DefaultBegin
 
-function Invoke-Begin {
- Invoke-DefaultBegin
-
-}
+# }
 
 function Invoke-Download {
-  Invoke-DefaultDownload
+   Invoke-DefaultDownload
+  #  git clone https://github.com/danf425/Adminator-admin-dashboard.git adminator
+  #  Get-ChildItem
+  #  Start-Sleep -s 2
+  #  cd adminator
+ #  Get-ChildItem
+ #  Start-Sleep -s 2
 }
-function Invoke-Verify {
-  Invoke-DefaultVerify
-}
+# function Invoke-Verify {
+#   Invoke-DefaultVerify
+# }
 
-function Invoke-Clean {
-  Invoke-DefaultClean
-}
+# function Invoke-Clean {
+#   Invoke-DefaultClean
+# }
 
-function Invoke-Unpack {
-  Invoke-DefaultUnpack
-}
-function Invoke-Prepare {
-  Invoke-DefaultPrepare
-}
+# function Invoke-Unpack {
+#   Invoke-DefaultUnpack
+# # }
+# function Invoke-Prepare {
+#   Invoke-DefaultPrepare
+# }
 
 function Invoke-Build {
   Invoke-DefaultBuild
 }
-function Invoke-Check {}
+# function Invoke-Check {}
 
 function Invoke-Install {
   #Invoke-DefaultInstall  
-  echo "npm version below"
-  npm -v
+#   echo "version below"
+#   npm -v
+#   echo "Get location"
+#   Get-Location
+#   Start-Sleep -s 2
+#   echo "list files:"
+# #  Get-ChildItem -Path "C:\hab\cache\src\adminator-1.0.0\"
+#   Start-Sleep -s 2
+#   cd C:\src\habitat\adminator
+#   Get-Location
+#   Start-Sleep -s 2
+   git clone https://github.com/danf425/Adminator-admin-dashboard.git adminator
+   Get-ChildItem
+   Start-Sleep -s 2
+   cd adminator
+  # echo "move files"
+  # Copy-Item ".\package.json" -Destinatio "C:\hab\cache\src\adminator-1.0.0\"
+  echo "npm install"
   npm install
+  npm run dev
 #  npm run dev
 }
 
-function Invoke-End {
-  Invoke-DefaultEnd
-}
+# function Invoke-End {
+#   Invoke-DefaultEnd
+# }
