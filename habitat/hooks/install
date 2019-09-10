@@ -1,0 +1,7 @@
+# Everything could be done here, but then it wouldn't be run as a svc
+
+# Write-Host "start up npm service"
+ 
+ # npm install --save-dev cross-env
+ # npm install webpack-dev-server
+ # npm run preview

@@ -16,45 +16,25 @@ $pkg_build_deps=@(
 
 function Invoke-Download {
    Invoke-DefaultDownload
-  # Maybe download should be part of the process, but then it would be harder to edit 
-  #  git clone https://github.com/danf425/Adminator-admin-dashboard.git adminator
-  #  cd adminator
-  #  Get-ChildItem
-  #  Start-Sleep -s 2
 }
+
 function Invoke-Build {
-  Invoke-DefaultBuild
+   Invoke-DefaultBuild
+ ls "../../../../src"
+ Copy-Item -Path "../../../../src" -Destination $pkg_prefix  -Recurse -Force
 }
+
 function Invoke-Install {
-   echo "LOOK HERERERE HERHER1"
-   echo $pkg_svc_var_path
-   echo "LOOK HERERERE HERHE2"
-   echo $HAB_CACHE_SRC_PATH
-   echo "LOOK HERERERE HERHE3E"
-   echo $pkg_dirname
+     cd $pkg_prefix
 #   echo "npm version below"
 #   npm -v
    echo "Get location"
    Get-Location
-#   Start-Sleep -s 2
-#   echo "list files:"
-# #  Get-ChildItem -Path "C:\hab\cache\src\adminator-1.0.0\"
-#   Start-Sleep -s 2
-#   cd C:\src\habitat\adminator
-#   Get-Location
-#   Start-Sleep -s 2
+  npm install --silent  
+  #  && invoke-expression 'cmd /c start powershell -Command { write-host "Hi, new window!"; npm run dev  }'
+  npm run build --silent
+  Start-Process PowerShell -ArgumentList "npm run preview --silent"
 
- #Donload repo and start process
-  git clone https://github.com/danf425/Adminator-admin-dashboard.git adminator
-  cd adminator
-#  npm install &&
-#  invoke-expression 'cmd /c start powershell -Command { write-host "Hi, new window!"; npm run dev  }'
-  npm install   
-  npm run dev
-  # echo "move files"
-  # Copy-Item ".\package.json" -Destinatio "C:\hab\cache\src\adminator-1.0.0\
-}
+  #npm run preview --silent 
 
-# function Invoke-End {
-#   Invoke-DefaultEnd
-# }
+ }
